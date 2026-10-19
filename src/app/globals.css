@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* Let webflow.css handle all visual styles.
+   Only define CSS custom properties for Next.js font variables here. */
+
+@theme {
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-main: var(--font-dm-sans), "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Spinning symbol animation (used in hero) */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Marquee animation for gallery strip */
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide dev indicator badge in dev so it doesn't overlap template floating pill */
+nextjs-portal,
+[data-nextjs-toast],
+[data-nextjs-dev-overlay] {
+  display: none !important;
+}
+
+/* Ensure main-container across all sections expands to 1440px and does not get constrained by default Webflow container rules */
+.main-container,
+.w-layout-blockcontainer.main-container,
+.w-container.main-container {
+  max-width: 1440px !important;
+  width: 100% !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .main-container,
+  .w-layout-blockcontainer.main-container,
+  .w-container.main-container {
+    max-width: 100% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Ensure project images expand to 100% width of their grid and wrapper */
+.grid-projects-home-b-halves,
+.list-wrapper-home-b-wide,
+.master-project-tile,
+.wrap-image-project-main {
+  width: 100% !important;
+}
