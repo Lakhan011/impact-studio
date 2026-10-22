@@ -41,7 +41,6 @@ const projects: ProjectItem[] = [
 ];
 
 export default function ProjectsSection() {
-
   const renderProjectTile = (project: ProjectItem) => {
     return (
       <div className="master-project-tile">
@@ -64,30 +63,70 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="section red">
+    <section className="section red" style={{ paddingLeft: 0, paddingRight: 0 }}>
+      {/* 1. Section Heading & 2-column halves in standard container */}
       <div
         className="w-layout-blockcontainer main-container w-container"
         style={{ maxWidth: "1440px", width: "100%" }}
       >
-        {/* Section Heading */}
         <div className="heading-left mg-bottom-80">
           <ScrollHeading as="h2" className="no-margins">
             As good as our last project
           </ScrollHeading>
         </div>
 
-        {/* 2-column halves grid for Project 1 and Project 2 */}
         <div className="w-layout-grid grid-projects-home-b-halves">
           {renderProjectTile(projects[0])}
           {renderProjectTile(projects[1])}
         </div>
+      </div>
 
-        {/* Wide single-project showcase for Project 3 */}
-        <div className="list-wrapper-home-b-wide">
-          {renderProjectTile(projects[2])}
+      {/* 2. Wide single-project showcase (Wedding Smile) — full-bleed edge-to-edge with zero left/right gaps */}
+      <div
+        className="list-wrapper-home-b-wide"
+        style={{
+          width: "100%",
+          maxWidth: "100%",
+          marginTop: "100px",
+          paddingLeft: 0,
+          paddingRight: 0,
+        }}
+      >
+        <div className="master-project-tile" style={{ width: "100%" }}>
+          <Link
+            href={`/projects/${projects[2].slug}`}
+            className="link-project-main"
+            style={{ width: "100%", display: "flex", flexDirection: "column" }}
+          >
+            <div style={{ width: "100%" }}>
+              <ProjectImageHover
+                imageSrc={projects[2].image}
+                imageAlt={projects[2].title}
+                extraClass={projects[2].wrapClass}
+              />
+            </div>
+            <div
+              className="bottom-project-main"
+              style={{
+                maxWidth: "1440px",
+                width: "100%",
+                margin: "0 auto",
+                paddingLeft: "24px",
+                paddingRight: "24px",
+              }}
+            >
+              <h3 className="no-margins">{projects[2].title}</h3>
+              <div className="paragraph-big">{projects[2].category}</div>
+            </div>
+          </Link>
         </div>
+      </div>
 
-        {/* See all projects CTA */}
+      {/* 3. See all projects CTA in standard container */}
+      <div
+        className="w-layout-blockcontainer main-container w-container"
+        style={{ maxWidth: "1440px", width: "100%" }}
+      >
         <div className="flex-cta-center mg-top-120">
           <Link href="/projects" className="line-link-block white-link">
             <div>see all projects</div>

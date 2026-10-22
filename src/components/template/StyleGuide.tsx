@@ -1,6 +1,5 @@
 import React from "react";
 import Footer from "@/components/common/Footer";
-import FloatingBadge from "@/components/common/FloatingBadge";
 
 const ZWJ = "\u200D";
 
@@ -374,7 +373,6 @@ export default function StyleGuide() {
       </section>
 
       <Footer />
-      <FloatingBadge />
     </main>
   );
 }

@@ -46,10 +46,15 @@ export default function ProjectImageHover({
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ position: "relative", overflow: "hidden" }}
+      style={{ position: "relative", overflow: "hidden", width: "100%" }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={imageSrc} alt={imageAlt} className="image-project-main" />
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        className="image-project-main"
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      />
       <div
         className="view-circle"
         style={{
