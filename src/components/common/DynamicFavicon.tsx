@@ -4,10 +4,8 @@ import { useEffect } from "react";
 
 /**
  * DynamicFavicon
- * Rotates the browser tab favicon based on window scroll position:
- * - Scrolling up: rotates clockwise
- * - Scrolling down: rotates counter-clockwise
- * Matches the exact behavior and formula of the hero section symbol.
+ * Rotates the browser tab favicon based on window scroll position.
+ * Safe for React 19 / Next.js reconciliation — never removes nodes from <head>.
  */
 export default function DynamicFavicon() {
   useEffect(() => {
@@ -38,18 +36,10 @@ export default function DynamicFavicon() {
 
       const dataUrl = canvas.toDataURL("image/png");
 
-      let link = document.querySelector<HTMLLinkElement>("link[data-dynamic-favicon]");
+      let link = document.querySelector<HTMLLinkElement>("link#dynamic-favicon");
       if (!link) {
-        // Remove prior static icon links so browser immediately switches to dynamic icon
-        document
-          .querySelectorAll<HTMLLinkElement>("link[rel*='icon']")
-          .forEach((el) => {
-            if (el.getAttribute("data-dynamic-favicon") !== "true") {
-              el.parentNode?.removeChild(el);
-            }
-          });
         link = document.createElement("link");
-        link.setAttribute("data-dynamic-favicon", "true");
+        link.id = "dynamic-favicon";
         link.rel = "icon";
         link.type = "image/png";
         document.head.appendChild(link);
@@ -59,7 +49,6 @@ export default function DynamicFavicon() {
 
     img.onload = () => {
       isImageLoaded = true;
-      // Initial render at current scroll
       const initialAngle = -window.scrollY * 0.4;
       lastAngle = initialAngle;
       renderFavicon(initialAngle);
@@ -72,8 +61,7 @@ export default function DynamicFavicon() {
       rafId = window.requestAnimationFrame(() => {
         rafId = null;
         const currentAngle = -window.scrollY * 0.4;
-        // Only update if angle difference is at least 2 degrees to avoid unnecessary DOM thrashing
-        if (Math.abs(currentAngle - lastAngle) >= 2) {
+        if (Math.abs(currentAngle - lastAngle) >= 3) {
           lastAngle = currentAngle;
           renderFavicon(currentAngle);
         }

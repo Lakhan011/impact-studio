@@ -4,7 +4,6 @@ import { DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "@/styles/webflow.css";
 import NavbarWrapper from "@/components/navigation/NavbarWrapper";
-import DynamicFavicon from "@/components/common/DynamicFavicon";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -46,7 +45,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${dmSans.variable} ${playfair.variable}`}>
       <body className={`${dmSans.variable} ${playfair.variable}`}>
-        <DynamicFavicon />
         <Suspense fallback={null}>
           <NavbarWrapper />
         </Suspense>

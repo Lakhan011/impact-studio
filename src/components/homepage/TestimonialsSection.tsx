@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import ScrollHeading from "@/components/common/ScrollHeading";
 
 const testimonials = [
   {
@@ -84,7 +85,9 @@ export default function TestimonialsSection() {
     <section className="section red testimonials-slider-section">
       <div className="container-testimonials-slider">
         <div className="heading-left testimonial-heading">
-          <h2 className="no-margins">Listen to others</h2>
+          <ScrollHeading as="h2" className="no-margins">
+            Listen to others
+          </ScrollHeading>
         </div>
 
         <div

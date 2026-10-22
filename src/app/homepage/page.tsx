@@ -18,7 +18,7 @@ export default function Homepage() {
   const [loaderDone, setLoaderDone] = useState(false);
 
   return (
-    <main style={{ minHeight: "100vh" }}>
+    <main className="page-wrapper" style={{ minHeight: "100vh", overflowX: "hidden", maxWidth: "100%" }}>
       {/* Full-screen red loader with spinning starburst */}
       <Loader minDuration={1200} onComplete={() => setLoaderDone(true)} />
 

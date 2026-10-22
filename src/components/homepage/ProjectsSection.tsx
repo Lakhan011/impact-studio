@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import ProjectImageHover from "@/components/common/ProjectImageHover";
+import ScrollHeading from "@/components/common/ScrollHeading";
 
 interface ProjectItem {
   id: string;
@@ -47,18 +49,11 @@ export default function ProjectsSection() {
           href={`/projects/${project.slug}`}
           className="link-project-main"
         >
-          <div className={`wrap-image-project-main ${project.wrapClass}`}>
-            <img
-              src={project.image}
-              alt={project.title}
-              className="image-project-main"
-            />
-            <div className="view-circle">
-              <div className="wrap-text-view">
-                <div className="text-view">View</div>
-              </div>
-            </div>
-          </div>
+          <ProjectImageHover
+            imageSrc={project.image}
+            imageAlt={project.title}
+            extraClass={project.wrapClass}
+          />
           <div className="bottom-project-main">
             <h3 className="no-margins">{project.title}</h3>
             <div className="paragraph-big">{project.category}</div>
@@ -76,7 +71,9 @@ export default function ProjectsSection() {
       >
         {/* Section Heading */}
         <div className="heading-left mg-bottom-80">
-          <h2 className="no-margins">As good as our last project</h2>
+          <ScrollHeading as="h2" className="no-margins">
+            As good as our last project
+          </ScrollHeading>
         </div>
 
         {/* 2-column halves grid for Project 1 and Project 2 */}

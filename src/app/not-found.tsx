@@ -1,18 +1,30 @@
+import React from "react";
 import Link from "next/link";
+import Footer from "@/components/common/Footer";
+import FloatingBadge from "@/components/common/FloatingBadge";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[70vh] items-center justify-center px-6 py-20">
-      <div className="relative overflow-hidden rounded-[2.5rem] border border-[#FF2E2E]/15 bg-[#fffaf5] px-8 py-12 text-center md:px-16">
-        <div className="absolute -left-10 top-8 text-[16rem] font-black uppercase tracking-[-0.08em] text-[#FF2E2E]/5">404</div>
-        <div className="relative">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#FF2E2E]">404</p>
-          <h1 className="mt-4 text-5xl font-black uppercase tracking-[-0.08em] text-[#111111] md:text-7xl">Page not found</h1>
-          <Link href="/homepage" className="pill-button pill-button--primary mt-8">
-            Back to homepage
-          </Link>
+    <main className="page-wrapper">
+      <section className="section hero-global">
+        <div className="w-layout-blockcontainer main-container w-container">
+          <div className="title-wrap-404">
+            <h1 className="no-margins">404</h1>
+            <div className="subtitle">
+              The page you&#x27;re looking for doesn&#x27;t exist or has been
+              moved
+            </div>
+            <div className="flex-cta-center mg-top-16">
+              <Link href="/" className="cta w-button">
+                Back to homepage
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <Footer />
+      <FloatingBadge />
     </main>
   );
 }

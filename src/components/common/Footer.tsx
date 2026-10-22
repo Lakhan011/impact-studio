@@ -1,21 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  const pathname = usePathname();
+
+  const footerLinkClass = (href: string) =>
+    pathname === href ? "link-footer w--current" : "link-footer";
 
   return (
     <section className="footer">
       {/* Full-width white logo */}
-      <Image
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src="/logo-footer-white.svg"
         alt="Impact Studio"
-        width={1440}
-        height={120}
         className="logo-footer-big"
       />
 
@@ -24,70 +24,143 @@ export default function Footer() {
         <div className="main-footer">
           {/* Left: tagline */}
           <div className="left-main-footer">
-            <p className="text-big-footer">
-              Impact is where design meets innovation.
-            </p>
+            <div className="text-big-footer">
+              Imapct is where design meets innovation.
+            </div>
           </div>
 
           {/* Right: link columns */}
           <div className="right-footer">
             <div className="column-footer-link">
-              <p className="heading-footer-link">Main pages</p>
-              <Link href="/homepage" className="link-footer">Home</Link>
-              <Link href="/about" className="link-footer">About us</Link>
-              <Link href="/services" className="link-footer">Services</Link>
-              <Link href="/projects" className="link-footer">Projects</Link>
+              <div className="heading-footer-link">Main pages</div>
+              <Link
+                href="/homepage"
+                className={footerLinkClass("/homepage")}
+                aria-current={pathname === "/homepage" ? "page" : undefined}
+              >
+                Home
+              </Link>
+              <Link
+                href="/about"
+                className={footerLinkClass("/about")}
+                aria-current={pathname === "/about" ? "page" : undefined}
+              >
+                About us
+              </Link>
+              <Link
+                href="/services"
+                className={footerLinkClass("/services")}
+                aria-current={pathname === "/services" ? "page" : undefined}
+              >
+                Services
+              </Link>
+              <Link
+                href="/projects"
+                className={footerLinkClass("/projects")}
+                aria-current={pathname === "/projects" ? "page" : undefined}
+              >
+                Projects
+              </Link>
             </div>
 
             <div className="column-footer-link">
-              <p className="heading-footer-link">Other</p>
-              <Link href="/homepage" className="link-footer">Home (sales)</Link>
-              <Link href="/pricing" className="link-footer">Pricing</Link>
-              <Link href="/blog" className="link-footer">Blog</Link>
-              <Link href="/legal" className="link-footer">Legal</Link>
+              <div className="heading-footer-link">Other</div>
+              <Link
+                href="/"
+                className={footerLinkClass("/")}
+                aria-current={pathname === "/" ? "page" : undefined}
+              >
+                Home (sales)
+              </Link>
+              <Link
+                href="/pricing"
+                className={footerLinkClass("/pricing")}
+                aria-current={pathname === "/pricing" ? "page" : undefined}
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/blog"
+                className={footerLinkClass("/blog")}
+                aria-current={pathname === "/blog" ? "page" : undefined}
+              >
+                Blog
+              </Link>
+              <Link
+                href="/legal"
+                className={footerLinkClass("/legal")}
+                aria-current={pathname === "/legal" ? "page" : undefined}
+              >
+                Legal
+              </Link>
             </div>
 
             <div className="column-footer-link">
-              <p className="heading-footer-link">Template</p>
-              <Link href="/template/style-guide" className="link-footer">Style guide</Link>
-              <Link href="/template/licenses" className="link-footer">Licenses</Link>
-              <Link href="/template/changelog" className="link-footer">Changelog</Link>
-              <Link href="/template/start-here" className="link-footer">Start here</Link>
-              <Link href="/homepage" className="link-footer">All pages</Link>
+              <div className="heading-footer-link">Template</div>
+              <Link
+                href="/template/style-guide"
+                className={footerLinkClass("/template/style-guide")}
+                aria-current={pathname === "/template/style-guide" ? "page" : undefined}
+              >
+                Style guide
+              </Link>
+              <Link
+                href="/template/licenses"
+                className={footerLinkClass("/template/licenses")}
+                aria-current={pathname === "/template/licenses" ? "page" : undefined}
+              >
+                Licenses
+              </Link>
+              <Link
+                href="/template/changelog"
+                className={footerLinkClass("/template/changelog")}
+                aria-current={pathname === "/template/changelog" ? "page" : undefined}
+              >
+                Changelog
+              </Link>
+              <Link
+                href="/template/start-here"
+                className={footerLinkClass("/template/start-here")}
+                aria-current={pathname === "/template/start-here" ? "page" : undefined}
+              >
+                Start here
+              </Link>
+              <Link href="/#pages" className="link-footer">All pages</Link>
+              <a
+                href="https://webflow.com/templates/html/impactstudio-agency-website-template"
+                target="_blank"
+                rel="noreferrer"
+                className="link-footer"
+              >
+                Buy template
+              </a>
             </div>
           </div>
         </div>
 
-        {/* Legal bar & Back to Top */}
-        <div className="legal-footer" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <p className="text-legal-footer" style={{ margin: 0 }}>
+        {/* Legal bar */}
+        <div className="legal-footer">
+          <div className="text-legal-footer">
             Template designed by{" "}
-            <a href="https://www.wavesdesign.io/" target="_blank" rel="noreferrer" className="link-legal-footer">
+            <a
+              href="https://www.wavesdesign.io/"
+              target="_blank"
+              rel="noreferrer"
+              className="link-legal-footer"
+            >
               Wavesdesign
             </a>
             , powered by no-code tool Webflow
-          </p>
-          
-          <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-            <Link href="/" className="link-legal-footer">
-              see all templates
-            </Link>
-            <button
-              onClick={scrollToTop}
+          </div>
+          <div className="text-legal-footer">
+            <a
+              href="https://webflow.com/templates/designers/wavesdesign"
+              target="_blank"
+              rel="noreferrer"
               className="link-legal-footer"
-              style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                color: "inherit",
-                fontSize: "inherit",
-                textDecoration: "underline",
-              }}
-              aria-label="Back to top"
             >
-              Back to top ↑
-            </button>
+              see all templates
+            </a>
           </div>
         </div>
       </div>

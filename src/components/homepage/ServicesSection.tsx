@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ScrollHeading from "@/components/common/ScrollHeading";
 
 const services = [
   { number: "1", title: "UX Design", href: "/services" },
@@ -12,8 +13,10 @@ export default function ServicesSection() {
       <div className="w-layout-blockcontainer main-container w-container">
         <div className="flex-right">
           <div className="master-services">
-            <div className="heading-left mg-bottom-80">
-              <h2 className="text-style-h2">Things we can do for you</h2>
+            <div className="heading-left">
+              <ScrollHeading as="h2" className="no-margins">
+                Things we can do for you
+              </ScrollHeading>
             </div>
 
             <div className="master-services-list">
@@ -31,11 +34,11 @@ export default function ServicesSection() {
               ))}
             </div>
 
-            <p className="text-style-subtitle">
+            <ScrollHeading as="div" className="subtitle">
               Quisque rutrum. Donec quam felis, ultricies nec, pellentesque eu,
               pretium quis, sem. In hac habitasse platea dictumst. Proin magna.
               Nullam dictum felis eu pede mollis pretium.
-            </p>
+            </ScrollHeading>
           </div>
         </div>
       </div>
